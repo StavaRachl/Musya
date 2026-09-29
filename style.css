@@ -1,0 +1,290 @@
+:root {
+  color-scheme: dark;
+  --page: #0f0f0f;
+  --frame: #111113;
+  --panel: #252525;
+  --text: #f6f6f6;
+  --muted: #2e2e2e;
+  --line: rgba(255, 255, 255, 0.12);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  min-height: 100%;
+}
+
+body {
+  margin: 0;
+  width: 1920px;
+  height: 1080px;
+  overflow: hidden;
+  background: var(--page);
+  color: var(--text);
+  font-family: "Jaini Purva", serif;
+}
+
+.frame-label {
+  display: none;
+}
+
+.site-frame {
+  width: 1920px;
+  height: 1080px;
+  background: var(--page);
+  padding: 28px 0;
+  display: flex;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.page {
+  width: 970px;
+  display: flex;
+  flex-direction: column;
+  gap: 48px;
+}
+
+.hero {
+  height: 324px;
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  border-radius: 28px 28px 20px 20px;
+  background: #252629;
+  border: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+.hero::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  background: linear-gradient(180deg, rgba(0, 0, 0, 0.05), rgba(0, 0, 0, 0.45));
+  pointer-events: none;
+}
+
+.hero-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center 43%;
+  display: block;
+  filter: grayscale(1) contrast(1.08) brightness(0.8);
+}
+
+.bookmark {
+  position: absolute;
+  z-index: 2;
+  top: 0;
+  left: 54px;
+  width: 79px;
+  height: 117px;
+  display: block;
+  object-fit: contain;
+  filter: brightness(0) invert(1);
+  pointer-events: none;
+}
+
+.hero-title {
+  position: absolute;
+  z-index: 1;
+  inset: auto 0 31px;
+  margin: 0;
+  text-align: center;
+  font-family: "Jaini Purva", serif;
+  font-size: 128px;
+  line-height: 0.85;
+  font-weight: 400;
+  letter-spacing: -0.035em;
+  text-shadow: 0 2px 12px rgba(0, 0, 0, 0.6);
+}
+
+.link-layout {
+  display: grid;
+  grid-template-columns: 310px 220px 310px;
+  align-items: center;
+  gap: 65px;
+}
+
+.photo-column {
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 52px;
+}
+
+.photo {
+  display: block;
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  object-fit: cover;
+  filter: grayscale(1) contrast(1.06);
+  border-radius: 9px;
+  border: 1px solid rgba(255, 255, 255, 0.28);
+  box-shadow: 0 0 0 3px rgba(0, 0, 0, 0.55);
+  background: #202125;
+}
+
+.photo-tall {
+  aspect-ratio: 0.59 / 1;
+  height: 665px;
+  z-index: 3;
+}
+
+.links {
+  display: flex;
+  flex-direction: column;
+  gap: 42px;
+  align-items: stretch;
+  justify-content: center;
+  min-width: 0;
+}
+
+.social-link {
+  min-height: 84px;
+  padding: 16px 12px 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--text);
+  background: #202020;
+  border: 1px solid rgba(255, 255, 255, 0.035);
+  border-radius: 6px;
+  text-decoration: none;
+  font-family: "Jaini Purva", serif;
+  font-size: 42px;
+  line-height: 1;
+  text-align: center;
+  transition:
+    background 0.2s ease,
+    transform 0.2s ease,
+    border-color 0.2s ease;
+}
+
+.social-link:hover,
+.social-link:focus-visible {
+  background: #48484c;
+  border-color: rgba(255, 255, 255, 0.2);
+  transform: translateY(-2px);
+  outline: none;
+}
+
+.social-link:active {
+  transform: translateY(0);
+}
+
+.footer-note {
+  margin: -4px 0 0;
+  color: #77777d;
+  text-align: center;
+  font:
+    10px/1.4 Arial,
+    sans-serif;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+@media (max-width: 1919px), (max-height: 1079px) {
+  body {
+    width: 100vw;
+    height: 100vh;
+    overflow: auto;
+  }
+  .site-frame {
+    width: 100%;
+    min-width: 320px;
+    height: 100vh;
+    min-height: 700px;
+    padding: 24px 16px;
+  }
+  .page {
+    width: min(970px, 100%);
+    gap: clamp(20px, 4vh, 48px);
+  }
+  .hero {
+    height: clamp(150px, 30vh, 324px);
+  }
+  .hero-title {
+    font-size: clamp(54px, 6.7vw, 128px);
+  }
+  .bookmark {
+    left: clamp(18px, 3vw, 54px);
+    width: clamp(38px, 4.1vw, 79px);
+    height: clamp(58px, 6.1vw, 117px);
+  }
+  .link-layout {
+    grid-template-columns: minmax(0, 1fr) minmax(100px, 0.71fr) minmax(0, 1fr);
+    gap: clamp(12px, 3.4vw, 65px);
+  }
+  .photo-column {
+    gap: clamp(14px, 2.7vw, 52px);
+  }
+  .photo-tall {
+    height: auto;
+    aspect-ratio: 0.59 / 1;
+  }
+  .links {
+    gap: clamp(12px, 2.2vw, 42px);
+  }
+  .social-link {
+    min-height: clamp(44px, 4.4vw, 84px);
+    font-size: clamp(20px, 2.2vw, 42px);
+  }
+}
+
+@media (max-width: 620px) {
+  .site-frame {
+    padding: 14px 10px;
+    min-height: 100vh;
+  }
+  .page {
+    gap: 20px;
+  }
+  .link-layout {
+    gap: 10px;
+    grid-template-columns: minmax(0, 1fr) 86px minmax(0, 1fr);
+  }
+  .photo-column {
+    gap: 14px;
+  }
+  .links {
+    gap: 12px;
+  }
+  .social-link {
+    font-size: 17px;
+    min-height: 42px;
+    padding: 8px 3px 6px;
+  }
+  .hero-title {
+    font-size: clamp(42px, 12vw, 64px);
+  }
+}
+
+#particles-js {
+  position: fixed;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 0;
+  pointer-events: none;
+  background: transparent;
+}
+
+#particles-js canvas {
+  display: block;
+  opacity: 0.7;
+}
+
+.site-frame {
+  position: relative;
+  z-index: 1;
+  background: transparent;
+}
+
+body {
+  position: relative;
+  background: var(--page);
+}
